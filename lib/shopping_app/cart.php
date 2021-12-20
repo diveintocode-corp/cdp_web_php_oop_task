@@ -1,29 +1,37 @@
-require_relative "item_manager"
+<?php
 
-class Cart
-  include ItemManager
+include_once "item_manager.php";
 
-  def initialize(owner)
-    self.owner = owner
-    @items = []
-  end
+class Cart{
+  use ItemManager;
 
-  def items
+  function __construct($owner)
+  {
+      $this->owner = $owner;
+      $this->items = [];
+  }
+
+  function items(){
     # Cartにとってのitemsは自身の@itemsとしたいため、ItemManagerのitemsメソッドをオーバーライドします。
     # CartインスタンスがItemインスタンスを持つときは、オーナー権限の移譲をさせることなく、自身の@itemsに格納(Cart#add)するだけだからです。
-    @items
-  end
+    $this->items;
+  }
 
-  def add(item)
-    @items << item
-  end
+  function add($item)
+  {
+      // @items << item
+      array_push($this->items, $item);
+  }
 
-  def total_amount
-    @items.sum(&:price)
-  end
+  function total_amount(){
+    // $this->items->sum(&:price);
+    return array_sum($this->items);
+  }
 
-  def check_out
-    return if owner.wallet.balance < total_amount
+  function check_out(){
+    if ($this->owner->wallet->balance < $this->total_amount()){
+      return;
+    }
   # ## 要件
   #   - カートの中身（Cart#items）のすべてのアイテムの購入金額が、カートのオーナーのウォレットからアイテムのオーナーのウォレットに移されること。
   #   - カートの中身（Cart#items）のすべてのアイテムのオーナー権限が、カートのオーナーに移されること。
@@ -34,6 +42,6 @@ class Cart
   #   - アイテムのオーナーのウォレット ==> item.owner.wallet
   #   - お金が移されるということ ==> (？)のウォレットからその分を引き出して、(？)のウォレットにその分を入金するということ
   #   - アイテムのオーナー権限がカートのオーナーに移されること ==> オーナーの書き換え(item.owner = ?)
-  end
+  }
 
-end
+}
