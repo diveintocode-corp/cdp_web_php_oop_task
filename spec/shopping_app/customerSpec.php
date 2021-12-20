@@ -3,7 +3,7 @@
 namespace spec\shopping_app;
 
 use PhpSpec\ObjectBehavior;
-use \lib\shopping_app\customer;
+use shopping_app\customer;
 
 class customerSpec extends ObjectBehavior
 {
