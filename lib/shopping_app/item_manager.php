@@ -10,16 +10,16 @@ trait ItemManager
         // return Item->all->select{|item| item.owner == self }
         // return array_filter(Item::all(), $this);
         // $items = [];
-        // return Item::all();
+        return Item::all();
         // $items= Item::all-select('owner','=',$this);
         
         // return $items;
-        foreach (Item::all() as $item) {
-          if($item->owner == $this){
-            return $item;
-            // return array_filter(array_column($item, $this));
-          }
-        }
+        // foreach (Item::all() as $item) {
+        //   if($item->owner == $this){
+        //     return $item;
+        //     // return array_filter(array_column($item, $this));
+        //   }
+        // }
     }
 
     public function pick_items($number, $quantity)
@@ -103,14 +103,14 @@ trait ItemManager
     $items = $this->items();
     $result = array();
       foreach ($items as $value) {
-        //   $items[$value] = $value;
-        $i;
-        // name: $value[0][$name];
-        $result['number']=$i;
-        $result['name'] = $value->name;
-        $result['price'] = $value->price;
-        // price: $value[0][$price];
-        $i++;
+        if (is_object($value)) {
+            // name: $value[0][$name];
+            $result['number']=$i;
+            $result['name'] = $value->name;
+            $result['price'] = $value->price;
+            // price: $value[0][$price];
+            $i++;
+        }
       }
       return $result;
   }
