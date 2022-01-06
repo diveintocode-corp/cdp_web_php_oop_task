@@ -1,15 +1,21 @@
 <?php
-require_once "item_manager.php";
-require_once "wallet.php";
+
+declare(strict_types=1);
+
+require_once 'item_manager.php';
+require_once 'wallet.php';
 
 class User
 {
     use ItemManager;
 
-    // attr_accessor $name;
-    // attr_reader :wallet
+    public Wallet $wallet;
+    public string $name;
 
-    public function __construct($name)
+    /**
+     * @param string $name
+     */
+    public function __construct(string $name)
     {
         $this->name = $name;
         $this->wallet = new Wallet($this); # UserインスタンスまたはUserを継承したクラスのインスタンスは生成されると、自身をオーナーとするウォレットを持ちます。
