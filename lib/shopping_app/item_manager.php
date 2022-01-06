@@ -1,5 +1,7 @@
 <?php
-// require "kosi"
+
+declare(strict_types=1);
+
 include_once 'item.php';
 
 # このモジュールをインクルードすると、自身の所有するItemインスタンスを操れるようになります。
