@@ -1,17 +1,20 @@
 <?php
-require_once "user.php";
-require_once "cart.php";
+
+declare(strict_types=1);
+
+require_once 'user.php';
+require_once 'cart.php';
 
 class Customer extends User
 {
-    // attr_reader :cart
-    
+    public Cart $cart;
 
-    public function __construct($name)
+    /**
+     * @param string $name
+     */
+    public function __construct(string $name)
     {
-        // super(name)
-    $this->cart = new Cart($this); # Customerインスタンスは生成されると、自身をオーナーとするカートを持ちます。
-    $this->wallet = new Wallet($this);
-    $this->name = $name;
+        parent::__construct(name: $name);
+        $this->cart = new Cart(owner: $this); // Customerインスタンスは生成されると、自身をオーナーとするカートを持ちます。
     }
 }
