@@ -1,10 +1,12 @@
 <?php
 
-require_once "shopping_app/seller.php";
-require_once "shopping_app/item.php";
-require_once "shopping_app/customer.php";
+declare(strict_types=1);
 
-$seller = new Seller("DICストア");
+require_once 'shopping_app/seller.php';
+require_once 'shopping_app/item.php';
+require_once 'shopping_app/customer.php';
+
+$seller = new Seller(name: 'DICストア');
 $items = [];
 for ($i = 0; $i < 5; $i++) {
     global $item;
