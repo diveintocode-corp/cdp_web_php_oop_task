@@ -18,6 +18,6 @@ class User
     public function __construct(string $name)
     {
         $this->name = $name;
-        $this->wallet = new Wallet($this); // UserインスタンスまたはUserを継承したクラスのインスタンスは生成されると、自身をオーナーとするウォレットを持ちます。
+        $this->wallet = new Wallet(owner: $this); // UserインスタンスまたはUserを継承したクラスのインスタンスは生成されると、自身をオーナーとするウォレットを持ちます。
     }
 }
