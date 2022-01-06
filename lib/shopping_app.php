@@ -7,25 +7,29 @@ require_once 'shopping_app/item.php';
 require_once 'shopping_app/customer.php';
 
 $seller = new Seller(name: 'DICストア');
-$items = [];
-for ($i = 0; $i < 5; $i++) {
-    global $item;
-    $item = new Item("CPU", 40830, $seller);
-    // $item1 = new Item("PC",40830,$seller);
-    $items[] = $item;
-    // $items[]=$item1;
-}
-// 10.times{ Item.new("CPU", 40830, seller) }
-// 10.times{ Item.new("メモリー", 13880, seller) }
-// 10.times{ Item.new("マザーボード", 28980, seller) }
-// 10.times{ Item.new("電源ユニット", 8980, seller) }
-// 10.times{ Item.new("PCケース", 8727, seller) }
-// 10.times{ Item.new("3.5インチHDD", 10980, seller) }
-// 10.times{ Item.new("2.5インチSSD", 13370, seller) }
-// 10.times{ Item.new("M.2 SSD", 12980, seller) }
-// 10.times{ Item.new("CPUクーラー", 13400, seller) }
-// 10.times{ Item.new("グラフィックボード", 23800, seller) }
+createItem(times: 10, name: 'CPU', price: 40830, owner: $seller);
+createItem(times: 10, name: 'メモリー', price: 13880, owner: $seller);
+createItem(times: 10, name: 'マザーボード', price: 28980, owner: $seller);
+createItem(times: 10, name: '電源ユニット', price: 8980, owner: $seller);
+createItem(times: 10, name: 'PCケース', price: 8727, owner: $seller);
+createItem(times: 10, name: '3.5インチHDD', price: 10980, owner: $seller);
+createItem(times: 10, name: '2.5インチSSD', price: 13370, owner: $seller);
+createItem(times: 10, name: 'M.2 SSD', price: 12980, owner: $seller);
+createItem(times: 10, name: 'CPUクーラー', price: 13400, owner: $seller);
+createItem(times: 10, name: 'グラフィックボード', price: 23800, owner: $seller);
 
+/**
+ * @param int $times
+ * @param string $name
+ * @param int $price
+ * @param User $owner
+ */
+function createItem(int $times, string $name, int $price, User $owner): void
+{
+    for ($i = 0; $i < $times; $i++) {
+        new Item(name: $name, price: $price, owner: $owner);
+    }
+}
 
 echo '🤖 あなたの名前を教えてください' . PHP_EOL;
 $customer = new Customer(name: readline());
