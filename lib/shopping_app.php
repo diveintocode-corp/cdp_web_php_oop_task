@@ -31,7 +31,7 @@ echo '🤖 あなたの名前を教えてください' . PHP_EOL;
 $customer = new Customer(name: readline());
 
 echo '🏧 ウォレットにチャージする金額を入力にしてください' . PHP_EOL;
-$customer->wallet->deposit(readline());
+$customer->wallet->deposit(amount: intval(readline()));
 
 echo '🛍️ ショッピングを開始します' . PHP_EOL;
 $end_shopping = false;
