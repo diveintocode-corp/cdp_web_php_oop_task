@@ -28,7 +28,7 @@ for ($i = 0; $i < 5; $i++) {
 
 
 echo '🤖 あなたの名前を教えてください' . PHP_EOL;
-$customer = new Customer(readline());
+$customer = new Customer(name: readline());
 
 echo '🏧 ウォレットにチャージする金額を入力にしてください' . PHP_EOL;
 $customer->wallet->deposit(readline());
