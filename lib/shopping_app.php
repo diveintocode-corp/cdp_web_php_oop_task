@@ -22,9 +22,9 @@ createItem(times: 10, name: 'グラフィックボード', price: 23800, owner: 
  * @param int $times
  * @param string $name
  * @param int $price
- * @param User $owner
+ * @param User|null $owner
  */
-function createItem(int $times, string $name, int $price, User $owner): void
+function createItem(int $times, string $name, int $price, ?User $owner): void
 {
     for ($i = 0; $i < $times; $i++) {
         new Item(name: $name, price: $price, owner: $owner);
