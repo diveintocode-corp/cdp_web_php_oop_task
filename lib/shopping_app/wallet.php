@@ -2,19 +2,31 @@
 
 declare(strict_types=1);
 
+require_once 'ownable.php';
+
 class Wallet
 {
-    // attr_reader :balance
+    use Ownable;
 
-    public function __construct($owner)
+    public int $balance;
+
+    /**
+     * @param User $owner
+     */
+    public function __construct(User $owner)
     {
         $this->owner = $owner;
         $this->balance = 0;
     }
 
-    public function deposit($amount)
+    /**
+     * @param int $amount
+     */
+    public function deposit(int $amount): void
     {
-        $this->balance += (int)$amount;
+        $tmp = $this->balance;
+        $tmp += $amount;
+        $this->balance = $tmp;
     }
 
     public function withdraw($amount)
