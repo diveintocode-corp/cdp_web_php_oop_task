@@ -26,18 +26,19 @@ class Item
         self::$instances[] = $this;
     }
 
+    /**
+     * self::$instances を返します ==> Item.all() でこれまでに生成された Item インスタンスを全て返すということです。
+     * @return array
+     */
+    public static function all(): array
+    {
+        return self::$instances;
+    }
+
     function label()
     {
         // { name: name, price: price }
         $name = "name";
         $price = "price";
     }
-
-    function all()
-    {
-        #　@@instancesを返します ==> Item.allでこれまでに生成されたItemインスタンスを全て返すということです。
-        // @@instances
-        return self::$instances;
-    }
-
 }
