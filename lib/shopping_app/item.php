@@ -2,23 +2,28 @@
 
 declare(strict_types=1);
 
+require_once 'ownable.php';
+
 class Item
 {
-    // attr_reader :name, :price
+    use Ownable;
 
-    // @@instances = []
-    // public $this->instances = array(0);
-    public static $instances = array();
+    public static array $instances;
+    private string $name;
+    private int $price;
 
-    function __construct($name, $price, $owner = nil)
+    /**
+     * @param string $name
+     * @param int $price
+     * @param User|null $owner
+     */
+    public function __construct(string $name, int $price, ?User $owner = null)
     {
         $this->name = $name;
         $this->price = $price;
         $this->owner = $owner;
-        // $instances = array();
-        # Itemインスタンスの生成時、そのItemインスタンス(self)は、@@insntancesというクラス変数に格納されます。
-        // $this->instances << self
-        array_push(self::$instances, $this);
+        // Itemインスタンスの生成時、そのItemインスタンス(self)は、$instancesというクラス変数に格納されます。
+        self::$instances[] = $this;
     }
 
     function label()
