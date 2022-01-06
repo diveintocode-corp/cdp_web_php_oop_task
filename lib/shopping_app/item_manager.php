@@ -49,7 +49,7 @@ trait ItemManager
         // }
     }
 
-    public function items_list()
+    public function itemsList()
     { # 自身の所有するItemインスタンスの在庫状況を、["番号", "商品名", "金額", "数量"]という列でテーブル形式にして出力します。
         // print_r(
         // stock.map do |stock|
