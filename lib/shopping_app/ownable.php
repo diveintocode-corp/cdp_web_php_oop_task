@@ -1,6 +1,8 @@
 <?php
+
+declare(strict_types=1);
+
 trait Ownable
 {
-    // attr_accessor :owner
-    // $this->owner = $this;
+    public User $owner;
 }
