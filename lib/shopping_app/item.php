@@ -8,7 +8,7 @@ class Item
 {
     use Ownable;
 
-    public static array $instances;
+    private static array $instances;
     private string $name;
     private int $price;
 
