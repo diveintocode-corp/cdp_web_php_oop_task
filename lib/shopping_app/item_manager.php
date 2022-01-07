@@ -34,21 +34,16 @@ trait ItemManager
         // print_r($this->items());
     }
 
-    public function items()
-    { # 自身の所有する（自身がオーナーとなっている）全てのItemインスタンスを返します。
-        // return Item->all->select{|item| item.owner == self }
-        // return array_filter(Item::all(), $this);
-        // $items = [];
-        return Item::all();
-        // $items= Item::all-select('owner','=',$this);
-
-        // return $items;
-        // foreach (Item::all() as $item) {
-        //   if($item->owner == $this){
-        //     return $item;
-        //     // return array_filter(array_column($item, $this));
-        //   }
-        // }
+    /**
+     * 自身の所有する（自身がオーナーとなっている）全てのItemインスタンスを返します。
+     * @return array
+     */
+    private function items(): array
+    {
+        return array_filter(
+            Item::all(),
+            fn($item) => $item->owner === $this
+        );
     }
 
     public function itemsList()
