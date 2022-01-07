@@ -46,32 +46,25 @@ trait ItemManager
         );
     }
 
-    public function itemsList()
-    { # 自身の所有するItemインスタンスの在庫状況を、["番号", "商品名", "金額", "数量"]という列でテーブル形式にして出力します。
-        // print_r(
-        // stock.map do |stock|
-
-        // foreach ((array)$this->stock() as $stock) {
-        $i = 0;
-        foreach ((array)$this->items() as $stock) {
-            if (is_object($stock)) {
-                //     print_r([
-                //   "番号: "{ $stock[$number]},
-                //   "商品名: "{$stock[$label][$name]},
-                //   "金額: "{ $stock[$label][$price]},
-                //   "数量: "{ $stock[count($items)]}
-                // ]);
-                echo "number: " . $i . "  ";
-                echo "Product name: " . $stock->name . "  ";
-                echo "Amount of money: " . $stock->price . "  ";
-                // echo "quantity: ".count((array)$this->items())."  ";
-                echo "quantity: " . count((array)$this->stock()) . "  ";
-                echo "\n";
-                $i++;
-            }
-        }
-        // return $items;
-        // print_r((array)$this->items());
+    /**
+     * 自身の所有するItemインスタンスの在庫状況を、
+     * ["番号", "商品名", "金額", "数量"]という列でテーブル形式にして出力します。
+     */
+    public function itemsList(): void
+    {
+        // TODO マルチバイト対応
+        echo '+----+------------------+-----+----+' . PHP_EOL;
+        printf('|%s|%s|%s|%s|' . PHP_EOL,'番号', '商品名            ', '金額 ', '数量');
+        echo '+----+------------------+-----+----+' . PHP_EOL;
+        foreach ($this->stock() as $stock)
+            printf(
+                '|%-4d|%-18s|%5d|%4d|' . PHP_EOL,
+                $stock['number'],
+                $stock['label']['name'],
+                $stock['label']['price'],
+                count($stock['items']),
+            );
+        echo '+----+------------------+-----+----+' . PHP_EOL;
     }
 
     /**
