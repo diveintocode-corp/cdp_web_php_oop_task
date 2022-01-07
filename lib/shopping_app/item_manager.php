@@ -51,22 +51,20 @@ trait ItemManager
     /**
      * 自身の所有するItemインスタンスの在庫状況を、
      * ["番号", "商品名", "金額", "数量"]という列でテーブル形式にして出力します。
+     * @return string
      */
-    public function itemsList(): void
+    public function itemsList(): string
     {
         // TODO マルチバイト対応
-        echo '+----+------------------+-----+----+' . PHP_EOL;
-        printf('|%s|%s|%s|%s|' . PHP_EOL,'番号', '商品名            ', '金額 ', '数量');
-        echo '+----+------------------+-----+----+' . PHP_EOL;
-        foreach ($this->stock() as $stock)
-            printf(
-                '|%-4d|%-18s|%5d|%4d|' . PHP_EOL,
-                $stock['number'],
-                $stock['label']['name'],
-                $stock['label']['price'],
-                count($stock['items']),
-            );
-        echo '+----+------------------+-----+----+' . PHP_EOL;
+        $header = '|番号|商品名            |金額 |数量|';
+        $body = array_map(fn($stock) => sprintf(
+            '|%-4d|%-18s|%5d|%4d|' . PHP_EOL,
+            $stock['number'],
+            $stock['label']['name'],
+            $stock['label']['price'],
+            count($stock['items']),
+        ), $this->stock());
+        return $this->kosi(header: $header, body: $body);
     }
 
     /**
@@ -106,5 +104,21 @@ trait ItemManager
             }
         }
         return $groups;
+    }
+
+    /**
+     * @param string $header
+     * @param array $body
+     * @return string
+     */
+    private function kosi(string $header, array $body): string
+    {
+        // TODO 抽象化
+        return
+            '+----+------------------+-----+----+' . PHP_EOL .
+            $header . PHP_EOL .
+            '+----+------------------+-----+----+' . PHP_EOL .
+            implode($body) .
+            '+----+------------------+-----+----+' . PHP_EOL;
     }
 }
