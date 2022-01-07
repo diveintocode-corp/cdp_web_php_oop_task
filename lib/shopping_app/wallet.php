@@ -29,14 +29,17 @@ class Wallet
         $this->balance = $tmp;
     }
 
-    public function withdraw($amount)
+    /**
+     * @param int $amount
+     * @return int
+     */
+    public function withdraw(int $amount): int
     {
-        // return unless @balance >= amount
-        if ($this->balance < $amount) {
-            return;
-        }
+        if ($this->balance < $amount) return 0;
 
-        $this->balance -= $amount;
-        $amount;
+        $tmp = $this->balance;
+        $tmp -= $amount;
+        $this->balance = $tmp;
+        return $amount;
     }
 }
