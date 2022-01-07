@@ -114,4 +114,22 @@ trait ItemManager
         }
         return $result;
     }
+
+    /**
+     * @param array $items
+     * @return array
+     */
+    private function groupByLabel(array $items): array
+    {
+        $groups = [];
+        foreach ($items as $item) {
+            $key = $item->label();
+            if (array_key_exists($key, $groups)) {
+                $groups[$key][] = $item;
+            } else {
+                $groups[$key] = [$item];
+            }
+        }
+        return $groups;
+    }
 }
