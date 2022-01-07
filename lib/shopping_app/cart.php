@@ -27,10 +27,12 @@ class Cart
         $this->items;
     }
 
-    function add($item)
+    /**
+     * @param Item $item
+     */
+    function add(Item $item): void
     {
-        // @items << item
-        array_push($this->items, $item);
+        $this->items[] = $item;
     }
 
     function check_out()

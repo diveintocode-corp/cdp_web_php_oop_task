@@ -51,9 +51,8 @@ while (!$end_shopping) {
 
     $items = $seller->pickItems(number: $number, quantity: $quantity);
 
-    // $items->each{|item| customer.cart.add(item) }
-    foreach ((array)$items as $item) {
-        $customer->cart->add($item);
+    foreach ($items as $item) {
+        $customer->cart->add(item: $item);
     }
 
     echo '🛒 カートの中身' . PHP_EOL;
