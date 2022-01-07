@@ -79,38 +79,23 @@ trait ItemManager
         // print_r((array)$this->items());
     }
 
+    /**
+     * 自身の所有するItemインスタンスの在庫状況を返します。
+     * @return array
+     */
+    function stock(): array
+    {
+        $groups = $this->groupByLabel(items: $this->items());
 
-    function stock()
-    { # 自身の所有するItemインスタンスの在庫状況を返します。
-        //   $items
-        //     .group_by{|item| item.label } # Item#labelで同じ値を返すItemインスタンスで分類します。
-        //     .map.with_index do |label_and_items, index|
-        //       {
-        //         number: index,
-        //         label: {
-        //           name: label_and_items[0][:name],
-        //           price: label_and_items[0][:price],
-        //         },
-        //         items: label_and_items[1], # このitemsの中に、分類されたItemインスタンスを格納します。
-        //       }
-        //     end
-        // end
-
-        //     }
-
-        //     $group = array();
-        $i = 0;
-        $items = $this->items();
-        $result = array();
-        foreach ($items as $value) {
-            if (is_object($value)) {
-                // name: $value[0][$name];
-                $result['number'] = $i;
-                $result['name'] = $value->name;
-                $result['price'] = $value->price;
-                // price: $value[0][$price];
-                $i++;
-            }
+        $result = [];
+        $index = 0;
+        foreach ($groups as $label => $items) {
+            $result[] = [
+                'number' => $index,
+                'label' => json_decode($label, true),
+                'items' => $items,
+            ];
+            $index++;
         }
         return $result;
     }
