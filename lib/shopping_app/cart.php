@@ -14,7 +14,7 @@ class Cart
     /**
      * @param Customer $owner
      */
-    function __construct(Customer $owner)
+    public function __construct(Customer $owner)
     {
         $this->owner = $owner;
         $this->items = [];
@@ -25,7 +25,7 @@ class Cart
      * Cart インスタンスが Item インスタンスを持つときは、オーナー権限の移譲をさせることなく、自身の $items に格納(Cart->add())するだけだからです。
      * @return array
      */
-    function items(): array
+    public function items(): array
     {
         return $this->items;
     }
@@ -33,7 +33,7 @@ class Cart
     /**
      * @param Item $item
      */
-    function add(Item $item): void
+    public function add(Item $item): void
     {
         $this->items[] = $item;
     }
@@ -62,7 +62,7 @@ class Cart
     /**
      * @return int
      */
-    function totalAmount(): int
+    public function totalAmount(): int
     {
         return array_sum(array_column($this->items, 'price'));
     }

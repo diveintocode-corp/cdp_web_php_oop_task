@@ -28,7 +28,7 @@ trait ItemManager
      * 自身の所有するItemインスタンスの在庫状況を返します。
      * @return array
      */
-    function stock(): array
+    private function stock(): array
     {
         $groups = $this->groupByLabel(items: $this->items());
 
