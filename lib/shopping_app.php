@@ -42,15 +42,14 @@ $end_shopping = false;
 while (!$end_shopping) {
     echo '📜 商品リスト' . PHP_EOL;
     echo $seller->itemsList();
-    // print_r($items);
+
+    echo '⛏ 商品番号を入力してください' . PHP_EOL;
+    $number = intval(readline());
 
     echo '⛏ 商品数量を入力してください' . PHP_EOL;
-    $number = readline();
+    $quantity = intval(readline());
 
-    echo '⛏ 商品数量を入力してください' . PHP_EOL;
-    $quantity = readline();
-
-    $items = $seller->pick_items($number, $quantity);
+    $items = $seller->pickItems(number: $number, quantity: $quantity);
 
     // $items->each{|item| customer.cart.add(item) }
     foreach ((array)$items as $item) {

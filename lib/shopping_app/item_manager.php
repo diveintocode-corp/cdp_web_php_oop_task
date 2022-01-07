@@ -9,62 +9,19 @@ include_once 'item.php';
  */
 trait ItemManager
 {
-    public function pick_items($number, $quantity)
-    { # numberと対応した自身の所有するItemインスタンスを指定されたquantitiy分返します。
-        // $items = $stock.find{|stock| stock[:number] == number }&.dig(:items)
-        // $array = (array)$this->items();
-        // $item =array_search($number,$array);
-        // if ($item==null) {
-        //   echo "No items found\n";
-        //     return;
-        // }
-        // elseif(count($items)<$quantity)
-        // {
-        //   echo "Out of stock\n";
-        // }
-
-        // $items.slice(0, quantity)
-        // return array_slice($items, $quantity);
-        $item = null;
-        $items = $this->items();
-        foreach ($items as $struct) {
-            if ($number == array_search($number, $items)) {
-                $item = $struct;
-                return $item;
-            }
-        }
-        // print_r($this->items());
-    }
-
     /**
-     * 自身の所有する（自身がオーナーとなっている）全てのItemインスタンスを返します。
+     * number と対応した自身の所有する Item インスタンスを指定された quantity 分返します。
+     * @param int $number
+     * @param int $quantity
      * @return array
      */
-    private function items(): array
+    public function pickItems(int $number, int $quantity): array
     {
-        return array_filter(
-            Item::all(),
-            fn($item) => $item->owner === $this
-        );
-    }
+        $filtered = array_filter($this->stock(), fn($stock) => $stock['number'] === $number);
+        $items = reset($filtered) ? reset($filtered)['items'] : null;
+        if (!$items || count($items) < $quantity) return [];
 
-    /**
-     * 自身の所有するItemインスタンスの在庫状況を、
-     * ["番号", "商品名", "金額", "数量"]という列でテーブル形式にして出力します。
-     * @return string
-     */
-    public function itemsList(): string
-    {
-        // TODO マルチバイト対応
-        $header = '|番号|商品名            |金額 |数量|';
-        $body = array_map(fn($stock) => sprintf(
-            '|%-4d|%-18s|%5d|%4d|' . PHP_EOL,
-            $stock['number'],
-            $stock['label']['name'],
-            $stock['label']['price'],
-            count($stock['items']),
-        ), $this->stock());
-        return $this->kosi(header: $header, body: $body);
+        return array_splice($items, 0, $quantity);
     }
 
     /**
@@ -104,6 +61,37 @@ trait ItemManager
             }
         }
         return $groups;
+    }
+
+    /**
+     * 自身の所有する（自身がオーナーとなっている）全てのItemインスタンスを返します。
+     * @return array
+     */
+    private function items(): array
+    {
+        return array_filter(
+            Item::all(),
+            fn($item) => $item->owner === $this
+        );
+    }
+
+    /**
+     * 自身の所有するItemインスタンスの在庫状況を、
+     * ["番号", "商品名", "金額", "数量"]という列でテーブル形式にして出力します。
+     * @return string
+     */
+    public function itemsList(): string
+    {
+        // TODO マルチバイト対応
+        $header = '|番号|商品名            |金額 |数量|';
+        $body = array_map(fn($stock) => sprintf(
+            '|%-4d|%-18s|%5d|%4d|' . PHP_EOL,
+            $stock['number'],
+            $stock['label']['name'],
+            $stock['label']['price'],
+            count($stock['items']),
+        ), $this->stock());
+        return $this->kosi(header: $header, body: $body);
     }
 
     /**
