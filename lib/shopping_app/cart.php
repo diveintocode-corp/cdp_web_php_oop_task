@@ -40,7 +40,7 @@ class Cart
 
     function check_out()
     {
-        if ($this->owner->wallet->balance < $this->total_amount()) {
+        if ($this->owner->wallet->balance < $this->totalAmount()) {
             return;
         }
         # ## 要件
@@ -55,10 +55,12 @@ class Cart
         #   - アイテムのオーナー権限がカートのオーナーに移されること ==> オーナーの書き換え(item.owner = ?)
     }
 
-    function total_amount()
+    /**
+     * @return int
+     */
+    function totalAmount(): int
     {
-        // $this->items->sum(&:price);
-        return array_sum($this->items);
+        return array_sum(array_column($this->items, 'price'));
     }
 
 }

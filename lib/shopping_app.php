@@ -57,7 +57,7 @@ while (!$end_shopping) {
 
     echo '🛒 カートの中身' . PHP_EOL;
     $customer->cart->itemsList();
-    echo '🤑 合計金額:' . $customer->cart->total_amount() . PHP_EOL;
+    echo '🤑 合計金額:' . $customer->cart->totalAmount() . PHP_EOL;
 
     echo '😭 買い物を終了しますか？(yes/no)' . PHP_EOL;
     $end_shopping = readline() == "yes";
@@ -79,6 +79,6 @@ echo "😻👛 {$seller->name }のウォレット残高: {$seller->wallet->balan
 
 echo '🛒 カートの中身' . PHP_EOL;
 $customer->cart->itemsList();
-echo "🌚 合計金額: {$customer->cart->total_amount()}" . PHP_EOL;
+echo "🌚 合計金額: {$customer->cart->totalAmount()}" . PHP_EOL;
 
 echo '🎉 終了' . PHP_EOL;
