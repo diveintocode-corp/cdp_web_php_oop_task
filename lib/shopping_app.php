@@ -68,14 +68,14 @@ if (readline() === 'yes') {
     $customer->cart->checkOut();
 }
 
-echo "୨୧┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈Result┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈୨୧" . PHP_EOL;
+echo '୨୧┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈結果┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈୨୧' . PHP_EOL;
 echo "️🛍️ ️{$customer->name}" . 'の所有物' . PHP_EOL;
 $customer->itemsList();
-echo "😱👛 {$customer->name }のウォレット残高: {$customer->wallet->balance}" . PHP_EOL;
+echo "😱👛 {$customer->name}のウォレット残高: {$customer->wallet->balance}" . PHP_EOL;
 
-echo "📦 {$seller->name } の在庫状況" . PHP_EOL;
+echo "📦 {$seller->name} の在庫状況" . PHP_EOL;
 $seller->itemsList();
-echo "😻👛 {$seller->name }のウォレット残高: {$seller->wallet->balance}" . PHP_EOL;
+echo "😻👛 {$seller->name}のウォレット残高: {$seller->wallet->balance}" . PHP_EOL;
 
 echo '🛒 カートの中身' . PHP_EOL;
 $customer->cart->itemsList();
