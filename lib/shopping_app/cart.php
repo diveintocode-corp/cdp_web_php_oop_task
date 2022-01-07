@@ -20,11 +20,14 @@ class Cart
         $this->items = [];
     }
 
-    function items()
+    /**
+     * Cart にとっての items は自身の $this->items() としたいため、ItemManager の items()メソッドをオーバーライドします。
+     * Cart インスタンスが Item インスタンスを持つときは、オーナー権限の移譲をさせることなく、自身の $items に格納(Cart->add())するだけだからです。
+     * @return array
+     */
+    function items(): array
     {
-        # Cartにとってのitemsは自身の@itemsとしたいため、ItemManagerのitemsメソッドをオーバーライドします。
-        # CartインスタンスがItemインスタンスを持つときは、オーナー権限の移譲をさせることなく、自身の@itemsに格納(Cart#add)するだけだからです。
-        $this->items;
+        return $this->items;
     }
 
     /**
