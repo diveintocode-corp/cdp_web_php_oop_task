@@ -3,12 +3,13 @@
 declare(strict_types=1);
 
 include_once 'item_manager.php';
+require_once 'ownable.php';
 
 class Cart
 {
+    use Ownable;
     use ItemManager;
 
-    private Customer $owner;
     private array $items;
 
     /**
@@ -47,16 +48,16 @@ class Cart
             $item->owner = $this->owner;
         }
         $this->items = [];
-        # ## 要件
-        #   - カートの中身（Cart#items）のすべてのアイテムの購入金額が、カートのオーナーのウォレットからアイテムのオーナーのウォレットに移されること。
-        #   - カートの中身（Cart#items）のすべてのアイテムのオーナー権限が、カートのオーナーに移されること。
-        #   - カートの中身（Cart#items）が空になること。
+        // ## 要件
+        //   - カートの中身（Cart#items）のすべてのアイテムの購入金額が、カートのオーナーのウォレットからアイテムのオーナーのウォレットに移されること。
+        //   - カートの中身（Cart#items）のすべてのアイテムのオーナー権限が、カートのオーナーに移されること。
+        //   - カートの中身（Cart#items）が空になること。
 
-        # ## ヒント
-        #   - カートのオーナーのウォレット ==> self.owner.wallet
-        #   - アイテムのオーナーのウォレット ==> item.owner.wallet
-        #   - お金が移されるということ ==> (？)のウォレットからその分を引き出して、(？)のウォレットにその分を入金するということ
-        #   - アイテムのオーナー権限がカートのオーナーに移されること ==> オーナーの書き換え(item.owner = ?)
+        // ## ヒント
+        //   - カートのオーナーのウォレット ==> self.owner.wallet
+        //   - アイテムのオーナーのウォレット ==> item.owner.wallet
+        //   - お金が移されるということ ==> (？)のウォレットからその分を引き出して、(？)のウォレットにその分を入金するということ
+        //   - アイテムのオーナー権限がカートのオーナーに移されること ==> オーナーの書き換え(item.owner = ?)
     }
 
     /**
