@@ -60,7 +60,7 @@ while (!$end_shopping) {
     echo '🤑 合計金額:' . $customer->cart->totalAmount() . PHP_EOL;
 
     echo '😭 買い物を終了しますか？(yes/no)' . PHP_EOL;
-    $end_shopping = readline() == "yes";
+    $end_shopping = readline() === 'yes';
 }
 
 echo '💸 購入を確定しますか？(yes/no)' . PHP_EOL;
