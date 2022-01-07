@@ -78,9 +78,9 @@ trait ItemManager
     /**
      * 自身の所有するItemインスタンスの在庫状況を、
      * ["番号", "商品名", "金額", "数量"]という列でテーブル形式にして出力します。
-     * @return string
+     * @return void
      */
-    public function itemsList(): string
+    public function itemsList(): void
     {
         // TODO マルチバイト対応
         $header = '|番号|商品名            |金額 |数量|';
@@ -91,7 +91,7 @@ trait ItemManager
             $stock['label']['price'],
             count($stock['items']),
         ), $this->stock());
-        return $this->kosi(header: $header, body: $body);
+        echo $this->kosi(header: $header, body: $body);
     }
 
     /**

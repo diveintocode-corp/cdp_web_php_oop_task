@@ -41,7 +41,7 @@ echo '🛍️ ショッピングを開始します' . PHP_EOL;
 $end_shopping = false;
 while (!$end_shopping) {
     echo '📜 商品リスト' . PHP_EOL;
-    echo $seller->itemsList();
+    $seller->itemsList();
 
     echo '⛏ 商品番号を入力してください' . PHP_EOL;
     $number = intval(readline());
