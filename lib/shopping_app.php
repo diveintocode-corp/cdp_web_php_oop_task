@@ -64,8 +64,8 @@ while (!$end_shopping) {
 }
 
 echo '💸 購入を確定しますか？(yes/no)' . PHP_EOL;
-if (readline() == "yes") {
-    $customer->cart->check_out();
+if (readline() === 'yes') {
+    $customer->cart->checkOut();
 }
 
 echo "୨୧┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈Result┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈୨୧" . PHP_EOL;

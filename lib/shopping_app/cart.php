@@ -38,11 +38,15 @@ class Cart
         $this->items[] = $item;
     }
 
-    function check_out()
+    public function checkOut(): void
     {
-        if ($this->owner->wallet->balance < $this->totalAmount()) {
-            return;
+        if ($this->owner->wallet->balance < $this->totalAmount()) return;
+
+        foreach ($this->items as $item) {
+            $item->owner->wallet->deposit(amount: $this->owner->wallet->withdraw(amount: $item->price));
+            $item->owner = $this->owner;
         }
+        $this->items = [];
         # ## 要件
         #   - カートの中身（Cart#items）のすべてのアイテムの購入金額が、カートのオーナーのウォレットからアイテムのオーナーのウォレットに移されること。
         #   - カートの中身（Cart#items）のすべてのアイテムのオーナー権限が、カートのオーナーに移されること。
