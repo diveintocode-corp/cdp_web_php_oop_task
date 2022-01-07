@@ -9,8 +9,8 @@ class Item
     use Ownable;
 
     private static array $instances;
-    private string $name;
-    private int $price;
+    public string $name;
+    public int $price;
 
     /**
      * @param string $name
@@ -35,10 +35,15 @@ class Item
         return self::$instances;
     }
 
-    function label()
+
+    /**
+     * @return bool|string
+     */
+    public function label(): bool|string
     {
-        // { name: name, price: price }
-        $name = "name";
-        $price = "price";
+        return json_encode([
+            'name'  => $this->name,
+            'price' => $this->price
+        ], JSON_UNESCAPED_UNICODE);
     }
 }
