@@ -4,7 +4,9 @@ declare(strict_types=1);
 
 include_once 'item.php';
 
-# このモジュールをインクルードすると、自身の所有するItemインスタンスを操れるようになります。
+/**
+ * このモジュールをインクルードすると、自身の所有するItemインスタンスを操れるようになります。
+ */
 trait ItemManager
 {
     public function pick_items($number, $quantity)
