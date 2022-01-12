@@ -5,7 +5,7 @@ declare(strict_types=1);
 include_once 'item.php';
 
 /**
- * このモジュールを読み込むと、自身の所有するItemインスタンスを操れるようになります。
+ * このトレイトを読み込むと、自身の所有するItemインスタンスを操れるようになります。
  */
 trait ItemManager
 {
@@ -84,7 +84,6 @@ trait ItemManager
 
     private function kosi(string $header, array $body): string
     {
-        // TODO 抽象化
         return
             '+----+------------------+-----+----+' . PHP_EOL .
             $header . PHP_EOL .
