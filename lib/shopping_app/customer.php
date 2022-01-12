@@ -9,9 +9,6 @@ class Customer extends User
 {
     public Cart $cart;
 
-    /**
-     * @param string $name
-     */
     public function __construct(string $name)
     {
         parent::__construct(name: $name);

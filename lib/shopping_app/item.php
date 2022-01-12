@@ -2,21 +2,12 @@
 
 declare(strict_types=1);
 
-require_once 'ownable.php';
-
 class Item
 {
-    use Ownable;
-
     private static array $instances;
     public string $name;
     public int $price;
 
-    /**
-     * @param string $name
-     * @param int $price
-     * @param User|null $owner
-     */
     public function __construct(string $name, int $price, ?User $owner = null)
     {
         $this->name = $name;
@@ -28,17 +19,12 @@ class Item
 
     /**
      * self::$instances を返します ==> Item.all() でこれまでに生成された Item インスタンスを全て返すということです。
-     * @return array
      */
     public static function all(): array
     {
         return self::$instances;
     }
 
-
-    /**
-     * @return bool|string
-     */
     public function label(): bool|string
     {
         return json_encode([

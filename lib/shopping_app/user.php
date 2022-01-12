@@ -12,9 +12,6 @@ class User
     public Wallet $wallet;
     public string $name;
 
-    /**
-     * @param string $name
-     */
     public function __construct(string $name)
     {
         $this->name = $name;

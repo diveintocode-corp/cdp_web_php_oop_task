@@ -18,12 +18,6 @@ createItem(times: 10, name: 'M.2 SSD', price: 12980, owner: $seller);
 createItem(times: 10, name: 'CPU cooler', price: 13400, owner: $seller);
 createItem(times: 10, name: 'graphic board', price: 23800, owner: $seller);
 
-/**
- * @param int $times
- * @param string $name
- * @param int $price
- * @param User|null $owner
- */
 function createItem(int $times, string $name, int $price, ?User $owner): void
 {
     for ($i = 0; $i < $times; $i++) {
